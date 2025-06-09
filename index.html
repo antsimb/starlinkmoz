@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Starlink Maputo - Internet Rápida por Satélite</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><radialGradient id="a" cx="50%" cy="40%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><rect width="100" height="20" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .subtitle {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .speed-highlight {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin: 20px 0;
+            backdrop-filter: blur(10px);
+        }
+        
+        .speed-highlight h2 {
+            font-size: 2.8em;
+            color: #FFD700;
+            margin-bottom: 10px;
+        }
+        
+        .cta-button {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 10px;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            box-shadow: none;
+        }
+        
+        .cta-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: #333;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+        
+        .benefit-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            border-color: #667eea;
+        }
+        
+        .benefit-icon {
+            font-size: 3em;
+            margin-bottom: 20px;
+            display: block;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .benefit-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Problem Section */
+        .problem {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+        }
+        
+        .problem h2 {
+            text-align: center;
+            font-size: 2.5em;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .problem-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .problem-item .icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        /* Solution Section */
+        .solution {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .solution-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        
+        .solution-text h2 {
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        
+        .solution-features {
+            list-style: none;
+            margin: 30px 0;
+        }
+        
+        .solution-features li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+            color: #555;
+        }
+        
+        .solution-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #28a745;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .solution-image {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 20px;
+        }
+        
+        .solution-image .placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2em;
+            text-align: center;
+        }
+        
+        /* Specs Section */
+        .specs {
+            padding: 80px 0;
+            background: #2c3e50;
+            color: white;
+        }
+        
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .spec-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .spec-value {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #3498db;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .spec-label {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .step {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .step h3 {
+            margin: 20px 0 15px 0;
+            color: #333;
+            font-size: 1.3em;
+        }
+        
+        /* Final CTA Section */
+        .final-cta {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        
+        .final-cta h2 {
+            font-size: 2.8em;
+            margin-bottom: 20px;
+        }
+        
+        .final-cta p {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+        
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .contact-item {
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .contact-item h3 {
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .contact-item p {
+            font-size: 1.1em;
+            margin: 0;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            
+            .solution-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .container {
+                padding: 0 15px;
+            }
+            
+            .cta-button {
+                display: block;
+                margin: 10px 0;
+                text-align: center;
+            }
+        }
+        
+        /* Floating WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            z-index: 100;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 2px 2px 15px rgba(0,0,0,0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Internet Ultra-Rápida por Satélite</h1>
+                <p class="subtitle">Starlink - A revolução da internet chegou a Maputo!</p>
+                
+                <div class="speed-highlight">
+                    <h2>50-200 Mbps</h2>
+                    <p>Velocidade Garantida em Qualquer Lugar</p>
+                </div>
+                
+                <a href="#contact" class="cta-button">Solicitar Orçamento Grátis</a>
+                <a href="https://wa.me/258847743719" class="cta-button cta-secondary">WhatsApp Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="problem">
+        <div class="container">
+            <h2>Cansado da Internet Lenta?</h2>
+            <div class="problem-grid">
+                <div class="problem-item">
+                    <span class="icon">🐌</span>
+                    <h3>Internet Lenta</h3>
+                    <p>Demora horas para descarregar um filme ou fazer videochamadas</p>
+                </div>
+                <div class="problem-item">
+                    <span class="icon">📡</span>
+                    <h3>Sem Cobertura</h3>
+                    <p>A sua área não tem fibra óptica ou boa cobertura móvel</p>
+                </div>
+                <div class="problem-item">
+                    <span class="icon">💸</span>
+                    <h3>Preço Alto</h3>
+                    <p>Paga muito por internet que não funciona bem</p>
+                </div>
+                <div class="problem-item">
+                    <span class="icon">⚡</span>
+                    <h3>Instabilidade</h3>
+                    <p>Internet cai constantemente, principalmente à noite</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solution Section -->
+    <section class="solution">
+        <div class="container">
+            <div class="solution-content">
+                <div class="solution-text">
+                    <h2>Starlink é a Solução!</h2>
+                    <p>Internet por satélite da SpaceX, a tecnologia mais avançada do mundo. Funciona em qualquer lugar de Moçambique!</p>
+                    
+                    <ul class="solution-features">
+                        <li>Velocidade de 50-200 Mbps garantida</li>
+                        <li>Funciona em áreas rurais e urbanas</li>
+                        <li>Instalação rápida - pronto em poucas horas</li>
+                        <li>Sem necessidade de cabos telefônicos</li>
+                        <li>Resistente a chuva e vento</li>
+                        <li>Suporte técnico incluído</li>
+                    </ul>
+                    
+                    <a href="#contact" class="cta-button">Quero Starlink Agora!</a>
+                </div>
+                
+                <div class="solution-image">
+                    <div class="placeholder">
+                        Cole aqui uma foto<br>
+                        da antena Starlink<br>
+                        instalada e funcionando
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="container">
+            <h2 class="section-title">Por que Escolher Starlink?</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <span class="benefit-icon">🌍</span>
+                    <h3>Cobertura Global</h3>
+                    <p>Funciona em qualquer lugar de Moçambique, mesmo nas áreas mais remotas do país.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">⚡</span>
+                    <h3>Ultra Velocidade</h3>
+                    <p>50-200 Mbps de velocidade real, ideal para streaming, jogos e trabalho remoto.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">🛠️</span>
+                    <h3>Instalação Profissional</h3>
+                    <p>Nossa equipe instala tudo para você. Não precisa se preocupar com nada!</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">💪</span>
+                    <h3>Resistente</h3>
+                    <p>Funciona em qualquer clima - chuva, vento, calor. Tecnologia militar testada.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">📞</span>
+                    <h3>Suporte Completo</h3>
+                    <p>Suporte técnico pós-venda, manutenção e assistência sempre que precisar.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <span class="benefit-icon">🎯</span>
+                    <h3>Baixa Latência</h3>
+                    <p>Perfeito para videochamadas, jogos online e aplicações que exigem resposta rápida.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specs Section -->
+    <section class="specs">
+        <div class="container">
+            <h2 class="section-title">Especificações Técnicas</h2>
+            <div class="specs-grid">
+                <div class="spec-item">
+                    <span class="spec-value">50-200</span>
+                    <span class="spec-label">Mbps Download</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">10-25</span>
+                    <span class="spec-label">Mbps Upload</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">20-40</span>
+                    <span class="spec-label">ms Latência</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">24/7</span>
+                    <span class="spec-label">Disponibilidade</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">200m²</span>
+                    <span class="spec-label">Cobertura WiFi</span>
+                </div>
+                <div class="spec-item">
+                    <span class="spec-value">IP54</span>
+                    <span class="spec-label">Resistência</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">Como Funciona?</h2>
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Contacto</h3>
+                    <p>Entre em contacto connosco pelo WhatsApp ou telefone. Fazemos orçamento gratuito!</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Visita Técnica</h3>
+                    <p>Visitamos a sua casa/empresa para avaliar o melhor local para instalação da antena.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Instalação</h3>
+                    <p>Instalamos e configuramos todo o equipamento. Processo rápido e seguro.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Internet Pronta!</h3>
+                    <p>Testamos tudo e ensinamos como usar. A sua internet ultra-rápida está pronta!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="final-cta" id="contact">
+        <div class="container">
+            <h2>Pronto para Internet Ultra-Rápida?</h2>
+            <p>Não perca mais tempo com internet lenta. Contacte-nos agora para orçamento gratuito!</p>
+            
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📞 Telefone</h3>
+                    <p>+258 847 743 719</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h3>💬 WhatsApp</h3>
+                    <p>+258 847 743 719</p>
+                </div>
+                
+                <div class="contact-item">
+                    <h3>📧 Email</h3>
+                    <p>simbineacs@gmail.com</p>
+                </div>
+            </div>
+            
+            <a href="https://wa.me/258847743719?text=Olá! Gostaria de saber mais sobre o Starlink e solicitar um orçamento." class="cta-button">Solicitar Orçamento Agora</a>
+            
+            <p style="margin-top: 30px; font-size: 1.1em;">
+                ⭐ Atendemos Maputo e Arredores • Orçamento Gratuito • Instalação Profissional ⭐
+            </p>
+        </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/258847743719?text=Olá! Gostaria de saber mais sobre o Starlink." class="whatsapp-float" target="_blank">
+        💬
+    </a>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all benefit cards and steps
+        document.querySelectorAll('.benefit-card, .step, .problem-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+Adicionar landing page Starlink
+</body>
+</html>
